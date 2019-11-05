@@ -2,6 +2,7 @@
 layout: post
 title: "ATIRAI, Site Launch"
 date: 2019-04-06
+tags: Jekyll
 ---
 
 Well. Finally got around to putting this old website together with help of [Jonathan McGlone's guide](http://jmcglone.com/guides/github-pages/). 
