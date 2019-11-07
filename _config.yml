@@ -2,4 +2,4 @@ name: All That I Read And Infer
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 
-theme: jekyll-theme-slate
+theme: jekyll-theme-hacker
