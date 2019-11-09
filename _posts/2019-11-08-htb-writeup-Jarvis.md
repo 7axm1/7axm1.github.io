@@ -39,7 +39,7 @@ tags: sql-injection SUID
 
 ### 1.2 Port 80
   Since port 80 is open, let us open `http://10.10.10.143:80` in a browser.
-  ![http://10.10.10.143:80/](https://github.com/7axm1/7axm1.github.io/blob/master/images/htb/Jarvis/jarvis-PE-sudo-l.png)
+  ![http://10.10.10.143:80/](/images/htb/Jarvis/jarvis-PE-sudo-l.png)
 
   As you look around and enumerate various links, you see differnt hotel room options like below.
   ![http://10.10.10.143:80/?cod=5](../images/htb/Jarvis/jarvis-two-webpage.png)
