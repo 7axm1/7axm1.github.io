@@ -39,10 +39,10 @@ tags: sql-injection SUID
 
 ### 1.2 Port 80
   Since port 80 is open, let us open `http://10.10.10.143:80` in a browser.
-  ![http://10.10.10.143:80/](/images/htb/Jarvis/jarvis-PE-sudo-l.png)
+  ![http://10.10.10.143:80/](/images/htb/Jarvis/jarvis-one-webpage.png)
 
   As you look around and enumerate various links, you see differnt hotel room options like below.
-  ![http://10.10.10.143:80/?cod=5](../images/htb/Jarvis/jarvis-two-webpage.png)
+  ![http://10.10.10.143:80/?cod=5](/images/htb/Jarvis/jarvis-two-webpage.png)
 
   Since we see a parameter value being sent as plain text in URL, we can try if SQL injection is possible with the help of [OWASP Tests](https://www.owasp.org/index.php/Testing_for_MySQL)
 
@@ -57,9 +57,9 @@ tags: sql-injection SUID
 
   Let us now try to get a reverse shell using command execution, passing the command as value to the GET parameter `cmd`in the file `trial.php`.
   Using netcat command, a low-privileged-user reverse-shell is obtained at port 4444.
-  ![webshell](../images/htb/Jarvis/jarvis-exploitation-revshell-1.png)
+  ![webshell](/images/htb/Jarvis/jarvis-exploitation-revshell-1.png)
 
-  ![netcat-www-data](../images/htb/Jarvis/jarvis-exploitation-revshell-2.png)
+  ![netcat-www-data](/images/htb/Jarvis/jarvis-exploitation-revshell-2.png)
 
   As observed the user shell is of `www-data`. Checking for **user.txt**, we observe that it is located in `/home/pepper/user.txt`. So, in order to access **user.txt** we must escalate our privilege to user `pepper`.
 
@@ -322,7 +322,7 @@ pepper@jarvis:~$ systemctl enable /home/pepper/exploit.service --now
 ```
 This resulted in reverse shell at port 9000 as user `root`.
 
-![root-reverse-shell](../images/htb/Jarvis/jarvis-root-reverseshell.png)
+![root-reverse-shell](/images/htb/Jarvis/jarvis-root-reverseshell.png)
 
 We can now read the **root.txt** :D
 
