@@ -12,7 +12,8 @@ tags: magic-bytes network-scripts "sudo -l"
 
 ## **1.Enumeration**
   As always, let us begin the enumeration using `nmap`
-  ### 1.1 nmap
+  
+### 1.1 nmap
   This is the result of running `nmap -sC -sV -p- 10.10.10.146`
 
   ``` bash
@@ -37,7 +38,7 @@ Nmap done: 1 IP address (1 host up) scanned in 32.29 seconds
 
 We see tha two ports 22 and 80 are open in this machine. Considering higher probability of finding vulnerability in port 80, let us enumerate port 80.
 
-  ### Port 80
+### Port 80
 
 ![networked_webpage](/images/htb/Networked/networked_webpage.png)
 
