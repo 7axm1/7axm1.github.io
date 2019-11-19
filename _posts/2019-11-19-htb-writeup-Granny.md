@@ -7,7 +7,7 @@ tags: cadaver webdav churrasco
 
 # **Granny - 10.10.10.15**
 
-####  `Granny` is a straight-forward machine I have solved in **HTB**. The IP of the machine is **10.10.10.15**. This machine like most machines in **HTB** comes with lot of new things to learn and also introduced me to an awesome exploit [churrasco.exe](https://github.com/Re4son/Churrasco) and also a 32bit OS compatible [Juicy Potato](https://ivanitlearning.wordpress.com/2019/07/20/potato-privilege-escalation-exploits-for-windows/). This writeup is my attempt in solving Granny without metasploit.
+####  `Granny` is a straight-forward machine I have solved in **HTB**. The IP of the machine is **10.10.10.15**. This machine like most machines in **HTB** comes with lot of new things to learn and also introduced me to an awesome exploit [churrasco.exe](https://github.com/Re4son/Churrasco). Another exploit I found is a 32bit OS compatible [Juicy Potato](https://ivanitlearning.wordpress.com/2019/07/20/potato-privilege-escalation-exploits-for-windows/). This writeup is my attempt in solving Granny without metasploit.
 
 
 ## **1.Enumeration**
