@@ -55,21 +55,21 @@ Let us open it in browser for further enumeration .
 
 We access http://10.10.10.15 and we see this.
 
-![webpage](../images/htb/Granny/granny_webpage.png)
+![webpage](/images/htb/Granny/granny_webpage.png)
 
 Well, we could not find anything much in this page. Let us see what all possibilities of exploitation WebDAV is offering us in this machine by running `davtest`.
 
-![davtest](../images/htb/Granny/granny_davtest.png)
+![davtest](/images/htb/Granny/granny_davtest.png)
 
 We see that we can PUT *.html* and *.txt* files easily into the remote server. Since it is IIS 6.0 server it runs files with extention *.aspx*. We also see from results of nmap, that the allowed methods include COPY and MOVE. So, now lets try to manipulate these methods to add our exploit to remote server and check if that effort is fruitful.
 
 To do this we first create a aspx webshell with help of `msfvenom`.
 
-![payload-msfvenom](../images/htb/Granny/granny_payload_aspx.png)
+![payload-msfvenom](/images/htb/Granny/granny_payload_aspx.png)
 
 Then we PUT the text file using `cadaver` and use MOVE to change its extention to aspx.
 
-![newer.txt cadaver](../images/htb/Granny/granny_cadaver_aspx.png)
+![newer.txt cadaver](/images/htb/Granny/granny_cadaver_aspx.png)
 
 
 ## **2.Exploitation**
@@ -78,15 +78,15 @@ Now that we have successfully transfered our exploit to remote server, let us ac
 
 Here we access the file in web browser.
 
-![web-browser-newer](../images/htb/Granny/granny_webshellexec.png)
+![web-browser-newer](/images/htb/Granny/granny_webshellexec.png)
 
 And we get a reverse shell.
 
-![web-rev-shell](../images/htb/Granny/granny_rev_webshell.png)
+![web-rev-shell](/images/htb/Granny/granny_rev_webshell.png)
 
 Let us check our privileges.
 
-![webshell-whoami](../images/htb/Granny/granny_webshell_whoami.png)
+![webshell-whoami](/images/htb/Granny/granny_webshell_whoami.png)
 
 We see that we are `nt authority\network service`. Checking the privileges we see `SeImpersonatePrivilege` enabled. I thought I found what I required to privilege escalate.
 
@@ -101,21 +101,21 @@ The syntax is: `churrasco.exe -d "what-you-need-to-execute"`
 
 Again using cadaver I transfered files churrasco.exe and nc.exe to the machine
 
-![churrasco](../images/htb/Granny/granny_cadaver_churrasco.png)
+![churrasco](/images/htb/Granny/granny_cadaver_churrasco.png)
 
-![nc](../images/htb/Granny/granny_cadaver_nc.png)
+![nc](/images/htb/Granny/granny_cadaver_nc.png)
 
 Traversing to folder containing the files we transfered to remote machine with help of WebDAV we see the following :
 
-![contents](../images/htb/Granny/granny_webshell_contents.png)
+![contents](/images/htb/Granny/granny_webshell_contents.png)
 
 Now we run the exploit `churrasco.exe` to get a reverse shell as SYSTEM.
 
-![system-churr](../images/htb/Granny/granny_churrasco_privilege_escalation.png)
+![system-churr](/images/htb/Granny/granny_churrasco_privilege_escalation.png)
 
 We obatin the reverse shell as SYSTEM and we get the flags :D
 
-![flags](../images/htb/Granny/granny_flags.png)
+![flags](/images/htb/Granny/granny_flags.png)
 
 ## **NOTE**
 > I am not sure why Juicy Potato is not applicable to Windows Server 2003. If any of you reading this, gets to know before me, please let me know, I like to learn :).
